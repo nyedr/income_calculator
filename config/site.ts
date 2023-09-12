@@ -11,7 +11,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    github: "https://github.com/EidanGar/income_calculator",
+    docs: "https://www.nerdwallet.com/article/taxes/federal-income-tax-brackets",
   },
 }

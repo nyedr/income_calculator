@@ -10,10 +10,60 @@ export type Icon = LucideIcon
 export const Icons = {
   sun: SunMedium,
   moon: Moon,
-  logo: (props: LucideProps) => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-      <path d="M40 9a5 5 0 0 0-5-5H13a5 5 0 0 0-5 5v30a5 5 0 0 0 5 5h22a5 5 0 0 0 5-5zm-2 30a3 3 0 0 1-3 3H13a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h22a3 3 0 0 1 3 3z" />
-      <path d="M34 8H14a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2zm0 8H14v-6h20zM18 27h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1zm-1 4h-2v-2h2zM18 34h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1zm-1 4h-2v-2h2zM18 20h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1zm-1 4h-2v-2h2zM26 27h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1zm-1 4h-2v-2h2zM26 34h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1zm-1 4h-2v-2h2zM26 20h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1zm-1 4h-2v-2h2zM32 27a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0v-7a3 3 0 0 0-3-3zm1 10a1 1 0 0 1-2 0v-7a1 1 0 0 1 2 0zM34 20h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1zm-1 4h-2v-2h2z" />
+  logo: (props: LucideProps & { theme: "light" | "dark" }) => (
+    <svg
+      {...props}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M21 12C21 16.714 21 19.0711 19.682 20.5355C18.364 22 16.2426 22 12 22C7.75736 22 5.63604 22 4.31802 20.5355C3 19.0711 3 16.714 3 12C3 7.28595 3 4.92893 4.31802 3.46447C5.63604 2 7.75736 2 12 2C16.2426 2 18.364 2 19.682 3.46447C20.5583 4.43821 20.852 5.80655 20.9504 8"
+        stroke={props.theme === "dark" ? "#f0f5fa" : "#1C274D"}
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M7 8C7 7.53501 7 7.30252 7.05111 7.11177C7.18981 6.59413 7.59413 6.18981 8.11177 6.05111C8.30252 6 8.53501 6 9 6H15C15.465 6 15.6975 6 15.8882 6.05111C16.4059 6.18981 16.8102 6.59413 16.9489 7.11177C17 7.30252 17 7.53501 17 8C17 8.46499 17 8.69748 16.9489 8.88823C16.8102 9.40587 16.4059 9.81019 15.8882 9.94889C15.6975 10 15.465 10 15 10H9C8.53501 10 8.30252 10 8.11177 9.94889C7.59413 9.81019 7.18981 9.40587 7.05111 8.88823C7 8.69748 7 8.46499 7 8Z"
+        stroke={props.theme === "dark" ? "#f0f5fa" : "#1C274D"}
+        stroke-width="1.5"
+      />
+      <circle
+        cx="8"
+        cy="13"
+        r="1"
+        fill={props.theme === "dark" ? "#f0f5fa" : "#1C274D"}
+      />
+      <circle
+        cx="8"
+        cy="17"
+        r="1"
+        fill={props.theme === "dark" ? "#f0f5fa" : "#1C274D"}
+      />
+      <circle
+        cx="12"
+        cy="13"
+        r="1"
+        fill={props.theme === "dark" ? "#f0f5fa" : "#1C274D"}
+      />
+      <circle
+        cx="12"
+        cy="17"
+        r="1"
+        fill={props.theme === "dark" ? "#f0f5fa" : "#1C274D"}
+      />
+      <circle
+        cx="16"
+        cy="13"
+        r="1"
+        fill={props.theme === "dark" ? "#f0f5fa" : "#1C274D"}
+      />
+      <circle
+        cx="16"
+        cy="17"
+        r="1"
+        fill={props.theme === "dark" ? "#f0f5fa" : "#1C274D"}
+      />
     </svg>
   ),
   gitHub: (props: LucideProps) => (
