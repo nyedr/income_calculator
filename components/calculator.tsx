@@ -2,7 +2,6 @@
 
 import React, { useState, type Dispatch, type SetStateAction } from "react"
 
-import { handleMoneyInputUS, numberWithCommas } from "@/lib/utils"
 import { IncomeInfo, incomeInfoSchema } from "@/lib/validation/incomeInfo"
 import { Button } from "@/ui/button"
 import { Input } from "@/ui/input"
@@ -25,12 +24,14 @@ export const Calculator = ({
     paymentAmount: 0,
     hoursWorkedWeekly: 0,
   })
-  const [displayPaymentAmount, setDisplayPaymentAmount] = useState("0.00")
 
   const handleIncomeInformationSubmission = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault()
+
+    if (incomeInfo.hoursWorkedWeekly === 0)
+      incomeInfo.hoursWorkedWeekly = undefined
 
     const result = await incomeInfoSchema.safeParseAsync(incomeInfo)
 
@@ -116,10 +117,6 @@ export const Calculator = ({
                   paymentAmount: +e.target.value,
                 }))
               }
-              // onChange={(e) =>
-              //   handleMoneyInputUS(e, setIncomeInfo, setDisplayPaymentAmount)
-              // }
-              // value={displayPaymentAmount}
             />
           </div>
         </div>
