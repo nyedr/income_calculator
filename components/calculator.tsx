@@ -2,35 +2,37 @@
 
 import React, { useState, type Dispatch, type SetStateAction } from "react"
 
+import { handleMoneyInputUS, numberWithCommas } from "@/lib/utils"
 import { IncomeInfo, incomeInfoSchema } from "@/lib/validation/incomeInfo"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/ui/button"
+import { Input } from "@/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { toast } from "@/components/ui/toast"
-
-import { Button } from "./ui/button"
+} from "@/ui/select"
+import { toast } from "@/ui/toast"
 
 export const Calculator = ({
   setIncomeResults,
 }: {
-  setIncomeResults: Dispatch<SetStateAction<IncomeInfo | null>>
+  setIncomeResults: Dispatch<SetStateAction<IncomeInfo>>
 }) => {
   const [incomeInfo, setIncomeInfo] = useState<IncomeInfo>({
     paymentType: "hourly",
     paymentAmount: 0,
     hoursWorkedWeekly: 0,
   })
+  const [displayPaymentAmount, setDisplayPaymentAmount] = useState("0.00")
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleIncomeInformationSubmission = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault()
 
-    // synchronously validate the form data
-    const result = incomeInfoSchema.safeParse(incomeInfo)
+    const result = await incomeInfoSchema.safeParseAsync(incomeInfo)
 
     if (!result.success) {
       toast({
@@ -45,34 +47,16 @@ export const Calculator = ({
     setIncomeResults(result.data)
   }
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement> | string
-  ) => {
-    console.log("Form submitted")
-
-    if (typeof e === "string") {
-      setIncomeInfo((prev) => ({
-        ...prev,
-        paymentType: e as "hourly" | "salary",
-      }))
-      return
-    }
-
-    const { id, value } = e.target as HTMLInputElement
-
-    setIncomeInfo((prev) => ({
-      ...prev,
-      [id]: value,
-    }))
-  }
-
   return (
     <section
       id="calculator"
-      className="w-full p-4 pt-0 mx-auto md:p-8 max-w-7xl"
+      className="w-full p-2 pt-0 mx-auto md:p-8 max-w-7xl"
     >
       <h1 className="mt-0 mb-5 text-3xl font-bold">Income Calculator</h1>
-      <form className="flex flex-col items-start gap-5" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col items-start gap-5"
+        onSubmit={handleIncomeInformationSubmission}
+      >
         <h2 className="mb-0 text-2xl font-semibold">How are you paid?</h2>
         <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
           <div className="flex flex-col items-start gap-2">
@@ -110,10 +94,10 @@ export const Calculator = ({
                 id="hoursWorkedWeekly"
                 type="number"
                 onChange={(e) =>
-                  setIncomeInfo({
-                    ...incomeInfo,
+                  setIncomeInfo((prev) => ({
+                    ...prev,
                     hoursWorkedWeekly: +e.target.value,
-                  })
+                  }))
                 }
               />
             )}
@@ -123,15 +107,19 @@ export const Calculator = ({
               Amount
             </label>
             <Input
+              placeholder="$0.00"
+              id="paymentAmount"
+              type="text"
               onChange={(e) =>
                 setIncomeInfo((prev) => ({
                   ...prev,
                   paymentAmount: +e.target.value,
                 }))
               }
-              placeholder="$0.00"
-              id="paymentAmount"
-              type="number"
+              // onChange={(e) =>
+              //   handleMoneyInputUS(e, setIncomeInfo, setDisplayPaymentAmount)
+              // }
+              // value={displayPaymentAmount}
             />
           </div>
         </div>

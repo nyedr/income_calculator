@@ -1,3 +1,4 @@
+import type { ChangeEvent, Dispatch, SetStateAction } from "react"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -8,11 +9,37 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function handleMoneyInputUS(
+  e: ChangeEvent<HTMLInputElement>,
+  setIncomeInfo: Dispatch<SetStateAction<IncomeInfo>>,
+  setDisplayPaymentAmount: Dispatch<SetStateAction<string>>
+) {
+  let value = +e.target.value.replace(/[^0-9]/g, "")
+
+  console.log(value)
+
+  setIncomeInfo((prev) => ({
+    ...prev,
+    paymentAmount: value,
+  }))
+
+  const formattedValue = value.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  })
+
+  setDisplayPaymentAmount(formattedValue)
+}
+
 export function numberWithCommas(num: number) {
   return num
     .toFixed(2)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
+export function numberWithoutCommas(num: string) {
+  return num.replace(/,/g, "")
 }
 
 export function snakeToNormalText(str: string) {
