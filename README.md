@@ -34,7 +34,7 @@ The Income Tax Calculator Application aims to provide a close-to-accurate and st
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/EidanGar/income_calculator.git
+    git clone https://github.com/nyedr/income_calculator.git
     ```
 
 2. **Navigate to Project Directory**
@@ -72,11 +72,3 @@ Feel free to submit pull requests for new features, bug fixes, or improvements. 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE.md](LICENSE) file for details.
-
----
-
-For any additional questions or feedback, please [contact the maintainers](mailto:your-email@example.com).
-
----
-
-Designed with ❤️ by [EidanGar](https://github.com/EidanGar)
